@@ -25,7 +25,6 @@
     "discord.js-light": "^3.5.4",
     "distube": "^2.8.11",
     "erlpack": "github:discord/erlpack",
-    "ffmpeg-static": "^4.2.8",
     "spotify-url-info": "^2.2.0",
     "string-progressbar": "^1.0.3",
     "topgg-autoposter": "^1.1.9",
