@@ -1,6 +1,6 @@
 const config = require("./config.json")
 
-const { ShardingManager } = require("discord.js-light")
+const { ShardingManager } = require("discord.js")
 const shard = new ShardingManager("./index.js", {
     token: config.TOKEN,
     autoSpawn: true

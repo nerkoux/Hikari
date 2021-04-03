@@ -1,5 +1,5 @@
 const { KOKEN } = require("../../config.json")
-const { MessageEmbed } = require("discord.js-light")
+const { MessageEmbed } = require("discord.js")
 const { KSoftClient } = require("@ksoft/api")
 
 module.exports = {

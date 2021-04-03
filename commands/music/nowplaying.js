@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js-light")
+const { MessageEmbed } = require("discord.js")
 const createBar = require("string-progressbar")
 const { toColonNotation } = require("colon-notation")
 module.exports = {

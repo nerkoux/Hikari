@@ -1,5 +1,5 @@
-const Discord = require("discord.js-light")
-const { MessageEmbed } = require("discord.js-light")
+const Discord = require("discord.js")
+const { MessageEmbed } = require("discord.js")
 const client = new Discord.Client({
     messageCacheLifetime: 60,
     fetchAllMembers: false,
