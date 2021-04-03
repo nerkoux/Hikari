@@ -8,7 +8,7 @@ const client = new Discord.Client({
     cacheChannels: true
 })
 const fs = require("fs")
-const { TOKEN, PREFIX, YTCK, TOPKEN, SCKEN } = require("./config.json")
+const { TOKEN, PREFIX, YTCK, TOPKEN } = require("./config.json")
 const filters = require("./filters.json")
 const DisTube = require("distube")
 const AutoPoster = require("topgg-autoposter") // delete if you dont use top.gg
@@ -39,7 +39,6 @@ client.on("ready", () => {
 
     // delete if you dont use top.gg
     AutoPoster(TOPKEN, client)
-
 })
 
 // Debug | client.on("debug", (e) => logger.log(e))
