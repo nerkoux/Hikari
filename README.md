@@ -12,3 +12,5 @@
 
 ## Contributors
 ![Contributors](CONTRIBUTORS.svg)
+
+![L0SER8228](https://avatars.githubusercontent.com/u/65214509?s=48&v=4)
