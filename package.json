@@ -23,7 +23,7 @@
     "cat-loggr": "^1.1.0",
     "colon-notation": "^1.2.1",
     "discord.js-light": "^3.5.4",
-    "distube": "^2.8.11",
+    "distube": "^2.8.12",
     "erlpack": "github:discord/erlpack",
     "spotify-url-info": "^2.2.0",
     "string-progressbar": "^1.0.3",
