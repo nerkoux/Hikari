@@ -118,7 +118,6 @@ client.on("message", async message => {
 
 // DisTube for music
 client.distube = new DisTube(client, {
-    highWaterMark: 1 << 25,
     searchSongs: true,
     leaveOnEmpty: true,
     customFilters: filters,
