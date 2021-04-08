@@ -1,5 +1,5 @@
 # Hikari
-[![Discord](https://img.shields.io/discord/719467676816113695?style=for-the-badge)](https://discord.link/hikari)
+[![Discord](https://img.shields.io/discord/661525235207634994?style=for-the-badge)](https://discord.link/bread)
 ![GitHub repo size](https://img.shields.io/github/repo-size/KeepSOBP/Hikari?style=for-the-badge)
 [![GitHub](https://img.shields.io/github/license/keepsobp/hikari?style=for-the-badge)](https://github.com/KeepSOBP/Hikari/blob/master/LICENSE)
 ![status](https://img.shields.io/badge/Status-Beta-yellowgreen?style=for-the-badge)
