@@ -1,0 +1,25 @@
+{
+  "name": "hikari",
+  "version": "3.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KeepSOBP/Hikari.git"
+  },
+  "author": "KeepSOBP <osu@kakao.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/KeepSOBP/Hikari/issues"
+  },
+  "dependencies": {
+    "@discordjs/opus": "^0.5.0",
+    "@distube/spotify": "github:distubejs/spotify",
+    "discord.js": "^12.5.3",
+    "distube": "github:skick1234/distube#v3-beta",
+    "dokdo": "^0.3.0",
+    "koreanbots": "^2.0.10"
+  }
+}
