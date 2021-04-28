@@ -10,7 +10,7 @@
   <a href="https://github.com/KeepSOBP/Hikari/graphs/commit-activity" target="_blank">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
   </a>
-  <a href="https://github.com/KeepSOBP/Hikari/blob/master/LICENSE" target="_blank">
+  <a href="https://github.com/KeepSOBP/Hikari/blob/v3/LICENSE" target="_blank">
     <img alt="License: GPL-3.0" src="https://img.shields.io/github/license/KeepSOBP/Hikari" />
   </a>
 </p>
@@ -22,7 +22,7 @@
 ## License
 
 Copyright © 2021 [KeepSOBP](https://github.com/KeepSOBP)\
-This project is [GPL-3.0](https://github.com/KeepSOBP/Hikari/blob/master/LICENSE) licensed.
+This project is [GPL-3.0](https://github.com/KeepSOBP/Hikari/blob/v3/LICENSE) licensed.
 
 ---
 
