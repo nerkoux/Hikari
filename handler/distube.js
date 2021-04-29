@@ -16,6 +16,7 @@ module.exports = (client) => {
 
     client.distube
         .on("playSong", (queue, song) => {
+            queue.textChannel.stopTyping(true)
             const embed = new MessageEmbed()
                 .setTitle(":white_check_mark: 재생중")
                 .setColor("000000")
@@ -44,6 +45,7 @@ module.exports = (client) => {
             queue.connection.voice.setSelfDeaf(true)
         })
         .on("addSong", (queue, song) => {
+            queue.textChannel.stopTyping(true)
             const embed = new MessageEmbed()
                 .setTitle(":white_check_mark: 추가 완료")
                 .setColor("000000")
@@ -56,6 +58,7 @@ module.exports = (client) => {
             queue.textChannel.send(embed)
         })
         .on("addList", (queue, playlist) => {
+            queue.textChannel.stopTyping(true)
             const embed = new MessageEmbed()
                 .setTitle(":white_check_mark: 추가 완료")
                 .setColor("000000")
@@ -75,9 +78,10 @@ module.exports = (client) => {
                 .setTimestamp()
             message.channel.send(embed)
         })
-        .on("searchCancel", message => message.channel.send("취소됐어요!"))
+        .on("searchCancel", message => message.channel.stopTyping(true) && message.channel.send("취소됐어요!"))
         .on("error", (channel, e) => {
-            channel.send(`에러가 발생하였습니다!\n\`\`\`\n${Util.escapeMarkdown(e)}\n\`\`\``)
+            channel.stopTyping(true)
+            channel.send(`에러가 발생하였습니다!\n\`\`\`\n${e}\n\`\`\``)
             console.error(e)
         })
         .on("searchNoResult", message => message.channel.send("404 video not found"))
