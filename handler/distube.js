@@ -44,7 +44,7 @@ module.exports = (client) => {
         .on("addList", (queue, playlist) => {
             const embed = new MessageEmbed()
                 .setTitle(":white_check_mark: 추가 완료")
-                .setColor("RANDOM")
+                .setColor("000000")
                 .addField("플레이리스트", `\`${playlist.name}\``)
                 .addField("노래", `${playlist.songs.length}개의 노래를 넣었어요.`)
                 .addField("상태", `${status(queue)}`)
