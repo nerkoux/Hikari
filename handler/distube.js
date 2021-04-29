@@ -5,7 +5,7 @@ const config = require("../config.json")
 
 module.exports = (client) => {
     client.distube = new DisTube(client, {
-        searchSongs: true,
+        searchSongs: 10,
         leaveOnEmpty: true,
         customFilters: config.filters,
         YoutubeCookie: config.ytcookie,
