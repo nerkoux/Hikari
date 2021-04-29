@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js")
+const { Util, MessageEmbed } = require("discord.js")
 const DisTube = require("distube")
 const SpotifyPlugin = require("@distube/spotify")
 const config = require("../config.json")
@@ -19,7 +19,7 @@ module.exports = (client) => {
             const embed = new MessageEmbed()
                 .setTitle(":white_check_mark: 재생중")
                 .setColor("000000")
-                .addField("노래", `[\`${song.name}\` - \`${song.formattedDuration}\`](${song.url})`)
+                .addField("노래", `[\`${Util.escapeMarkdown(song.name)}\` - \`${song.formattedDuration}\`](${song.url})`)
                 .addField("신청자", `${song.user}`)
                 .addField("상태", `${status(queue)}`)
                 .setTimestamp()
@@ -47,7 +47,7 @@ module.exports = (client) => {
             const embed = new MessageEmbed()
                 .setTitle(":white_check_mark: 추가 완료")
                 .setColor("000000")
-                .addField("노래", `[\`${song.name}\` - \`${song.formattedDuration}\`](${song.url})`)
+                .addField("노래", `[\`${Util.escapeMarkdown(song.name)}\` - \`${song.formattedDuration}\`](${song.url})`)
                 .addField("신청자", `${song.user}`, true)
                 .setTimestamp()
             if (!song.thumbnail === null) {
@@ -59,7 +59,7 @@ module.exports = (client) => {
             const embed = new MessageEmbed()
                 .setTitle(":white_check_mark: 추가 완료")
                 .setColor("000000")
-                .addField("플레이리스트", `\`${playlist.name}\``)
+                .addField("플레이리스트", `\`${Util.escapeMarkdown(playlist.name)}\``)
                 .addField("노래", `${playlist.songs.length}개의 노래를 넣었어요.`)
                 .addField("상태", `${status(queue)}`)
                 .setTimestamp()
@@ -67,7 +67,7 @@ module.exports = (client) => {
         })
         .on("searchResult", (message, result) => {
             let i = 0
-            const resultname = result.map(song => `**${++i}**. ${song.name} - \`${song.formattedDuration}\``).join("\n")
+            const resultname = Util.splitMessage(result.map(song => `**${++i}**. ${Util.escapeMarkdown(song.name)} - \`${song.formattedDuration}\``).join("\n"), { maxLength: 1990 })
             const embed = new MessageEmbed()
                 .setTitle("검색")
                 .setColor("000000")
@@ -77,7 +77,7 @@ module.exports = (client) => {
         })
         .on("searchCancel", message => message.channel.send("취소됐어요!"))
         .on("error", (channel, e) => {
-            channel.send(`에러가 발생하였습니다!\n\`\`\`\n${e}\n\`\`\``)
+            channel.send(`에러가 발생하였습니다!\n\`\`\`\n${Util.escapeMarkdown(e)}\n\`\`\``)
             console.error(e)
         })
         .on("searchNoResult", message => message.channel.send("404 video not found"))
