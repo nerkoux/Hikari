@@ -78,7 +78,10 @@ module.exports = (client) => {
                 .setTimestamp()
             message.channel.send(embed)
         })
-        .on("searchCancel", message => message.channel.stopTyping(true) && message.channel.send("취소됐어요!"))
+        .on("searchCancel", message => {
+            message.channel.stopTyping(true)
+            message.channel.send("취소됐어요! :pensive:")
+        })
         .on("error", (channel, e) => {
             channel.stopTyping(true)
             channel.send(`에러가 발생하였습니다!\n\`\`\`\n${e}\n\`\`\``)
