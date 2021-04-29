@@ -1,5 +1,8 @@
 const Discord = require("discord.js")
-const client = new Discord.Client({ disableEveryone: true })
+const client = new Discord.Client({
+    disableEveryone: true,
+    intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_VOICE_STATES", "GUILD_MESSAGE_REACTIONS"]
+})
 const fs = require("fs")
 const Dokdo = require("dokdo")
 const config = require("./config.json")
