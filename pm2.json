@@ -1,0 +1,13 @@
+{
+  "apps": [
+    {
+      "name": "Hikari",
+      "script": "node",
+      "args": "index.js",
+      "watch": true,
+      "env": {
+        "SHELL": "bash"
+      }
+    }
+  ]
+}
