@@ -27,6 +27,20 @@ module.exports = (client) => {
                 embed.setThumbnail(`${song.thumbnail}`)
             }
             queue.textChannel.send(embed)
+
+            if (queue.connection.channel.type === "stage" && queue.connection.channel.manageable) {
+                queue.connection.voice.setSuppressed(false)
+            }
+            if (queue.connection.channel.type === "stage" && !queue.connection.channel.manageable) {
+                const embed = new MessageEmbed()
+                    .setTitle(":grey_exclamation: 잠시만요!")
+                    .setColor("FFFFFF")
+                    .setDescription("스테이지 채널에서 재생하려는데 제가 스테이지 관리자가 아닌것 같아요.\n\n편리하게 이용하기 위해 하단 움짤처럼 절 스테이지 관리자로 추가해주세요.\n\n아, 참고로 혹시 몰라서 방금 손 번쩍 들었으니 확인해보세요! :)")
+                    .setImage("https://nyan.shx.gg/Dn7V89.gif")
+                    .setTimestamp()
+                queue.textChannel.send(embed)
+                queue.connection.voice.setRequestToSpeak(true)
+            }
             queue.connection.voice.setSelfDeaf(true)
         })
         .on("addSong", (queue, song) => {
