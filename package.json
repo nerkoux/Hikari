@@ -19,7 +19,7 @@
     "@distube/spotify": "^0.1.0",
     "discord.js": "github:discordjs/discord.js#master",
     "distube": "github:skick1234/distube#beta",
-    "dokdo": "^0.3.0",
+    "dokdo": "github:KeepSOBP/dokdo#main",
     "koreanbots": "^2.0.10"
   },
   "devDependencies": {
