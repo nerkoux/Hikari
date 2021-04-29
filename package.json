@@ -21,5 +21,8 @@
     "distube": "github:skick1234/distube#beta",
     "dokdo": "^0.3.0",
     "koreanbots": "^2.0.10"
+  },
+  "devDependencies": {
+    "eslint": "^7.25.0"
   }
 }
