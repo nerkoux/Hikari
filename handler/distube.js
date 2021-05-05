@@ -32,7 +32,7 @@ module.exports = (client) => {
             if (queue.connection.channel.type === "stage" && queue.connection.channel.manageable) {
                 queue.connection.voice.setSuppressed(false)
             }
-            if (queue.connection.channel.type === "stage" && !queue.connection.channel.manageable && queue.connection.channel.suppress) {
+            if (queue.connection.channel.type === "stage" && !queue.connection.channel.manageable && queue.connection.voice.suppress) {
                 const embed = new MessageEmbed()
                     .setTitle(":grey_exclamation: 잠시만요!")
                     .setColor("FFFFFF")
