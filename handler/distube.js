@@ -70,13 +70,12 @@ module.exports = (client) => {
         })
         .on("searchResult", (message, result) => {
             let i = 0
-            const resultname = Util.splitMessage(result.map(song => `**${++i}**. ${Util.escapeMarkdown(song.name)} - \`${song.formattedDuration}\``).join("\n"), { maxLength: 1990 })
-            const embed = new MessageEmbed()
-                .setTitle("검색")
-                .setColor("000000")
-                .setDescription(`**아무거나 치시거나 60초뒤면 취소 됩니다.**\n 숫자를 입력해주세요!\n\n${resultname}`)
-                .setTimestamp()
-            message.channel.send(embed)
+            message.channel.send("**아무거나 치시거나 60초뒤면 취소 됩니다.**"
+            +   "알맞는 숫자를 입력해주세요!").then(m => {
+                const resultname = result.map(song => `**${++i}**. ${Util.escapeMarkdown(song.name)} - \`${song.formattedDuration}\``)
+                    .slice(0, 1990).join("\n...")
+                m.send(`\n\n\`${resultname}\``)
+            })
         })
         .on("searchCancel", message => {
             message.channel.stopTyping(true)
