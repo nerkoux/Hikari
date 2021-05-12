@@ -37,13 +37,13 @@ module.exports = (client, DokdoHandler) => {
 
     client.on("message", async message => {
         if (!message.guild || message.author.bot || message.channel.type === "dm") return
-        const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
-        const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex(config.prefix)})\\s*`)
+        const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/gu, "\\$&")
+        const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex(config.prefix)})\\s*`, "u")
         if (!prefixRegex.test(message.content)) return
 
         const [, matchedPrefix] = message.content.match(prefixRegex)
 
-        const args = message.content.slice(matchedPrefix.length).trim().split(/ +/)
+        const args = message.content.slice(matchedPrefix.length).trim().split(/ +/u)
         const commandName = args.shift().toLowerCase()
 
         DokdoHandler.run(message)
