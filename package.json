@@ -23,6 +23,6 @@
     "koreanbots": "^2.0.10"
   },
   "devDependencies": {
-    "eslint": "^7.25.0"
+    "eslint": "^7.26.0"
   }
 }
