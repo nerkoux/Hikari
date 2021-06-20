@@ -1,4 +1,3 @@
-
 const config = require("../config.json")
 const { KoreanbotsClient } = require("koreanbots")
 const client = new KoreanbotsClient({

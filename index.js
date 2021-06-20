@@ -12,8 +12,11 @@ client.aliases = new Discord.Collection()
 client.categories = fs.readdirSync("./commands/")
 client.cooldowns = new Discord.Collection()
 client.prefix = require("./config.json")
-const DokdoHandler = new Dokdo(client, { aliases: ["eval", "dok"], prefix: config.prefix });
+const DokdoHandler = new Dokdo(client, { aliases: ["eval", "dok"], prefix: config.prefix })
 
-[ /* idk why not working "koreanbots",*/ "commands", "distube"].forEach(handler => {
-    require(`./handler/${handler}`)(client, DokdoHandler)
-})
+const eventFiles = fs.readdirSync("./events").filter(file => file.endsWith(".js"))
+for (const file of eventFiles) {
+    if (file === "koreanbots.js") return console.log(`${file} Not Loaded`)
+    require(`./events/${file}`)(client, DokdoHandler)
+    console.log(`${file} Loaded`)
+}
