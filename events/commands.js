@@ -11,14 +11,14 @@ module.exports = (client, DokdoHandler) => {
             let cmds = require(`../commands/${dir}/${file}`)
             if (cmds.name) {
                 client.commands.set(cmds.name, cmds)
-                console.log(`${cmds.name} Loaded!`)
+                console.log(`[commands] ${cmds.name} Loaded`)
             }
             if (cmds.aliases && Array.isArray(cmds.aliases)) cmds.aliases.forEach((alias) => client.aliases.set(alias, cmds.name))
         }
     })
 
     client.on("ready", () => {
-        console.log(`${client.user.username} ready!`)
+        console.log(`[client] ${client.user.username} ready!`)
         setInterval(() => {
             const server = client.guilds.cache.size
             const cstatuslist = [
@@ -77,7 +77,7 @@ module.exports = (client, DokdoHandler) => {
         setTimeout(() => timestamps.delete(message.author.id), cooldownAmount)
 
         try {
-            command.run(client, message, args)
+            command.run(client, message, args, config)
         } catch (error) {
             console.error(error)
             message.reply(`에러가 발생했습니다.\n${error}`).catch(console.error)

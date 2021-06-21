@@ -35,7 +35,7 @@ module.exports = (client) => {
             if (!song.thumbnail === null) {
                 embed.setThumbnail(`${song.thumbnail}`)
             }
-            queue.textChannel.send(embed)
+            queue.textChannel.send({ embeds: [embed]})
 
             if (queue.voiceChannel.type === "stage" && queue.voiceChannel.manageable) {
                 queue.clientMember.voice.setSuppressed(false)
@@ -44,13 +44,12 @@ module.exports = (client) => {
                 const embed = new MessageEmbed()
                     .setTitle(":grey_exclamation: 잠시만요!")
                     .setColor("cbd0ed")
-                    .setDescription("스테이지 관리 권한을 부여하시거나 발언권 요청을 받아주세요.")
-                    .setImage("https://nyan.shx.gg/Dn7V89.gif")
+                    .setDescription("저에게 스테이지 관리 권한을 부여해 주시거나 발언권 요청을 받아주세요.")
+                    .setImage("https://nyan.shx.gg/a0QDsc.gif")
                     .setTimestamp()
-                queue.textChannel.send(embed)
+                queue.textChannel.send({ embeds: [embed]})
                 queue.clientMember.voice.setRequestToSpeak(true)
             }
-            queue.clientMember.voice.setSelfDeaf(true)
         })
         .on("addSong", (queue, song) => {
             queue.textChannel.stopTyping(true)
@@ -74,12 +73,12 @@ module.exports = (client) => {
                 .addField("노래", `${playlist.songs.length}개의 노래를 넣었어요.`)
                 .addField("상태", `${status(queue)}`)
                 .setTimestamp()
-            queue.textChannel.send(embed)
+            queue.textChannel.send({ embeds: [embed]})
         })
         .on("searchResult", (message, result) => {
             let i = 0
             message.channel.send("**아무거나 치시거나 60초뒤면 취소 됩니다.**\n"
-            +   "알맞는 숫자를 입력해주세요!")
+            +   "알맞는 숫자를 입력해 주세요!")
             const resultname = result.map(song => `${++i}. ${song.name} - ${song.formattedDuration}`)
                 .slice(0, 1990).join("\n")
             message.channel.send(`\n\n${resultname}`, {code: "markdown"})
@@ -90,16 +89,24 @@ module.exports = (client) => {
         })
         .on("error", (channel, e) => {
             channel.stopTyping(true)
-            channel.send("에러가 발생하였습니다!\n")
+            channel.send("에러가 발생 하였습니다!\n")
             channel.send(`${e}`, {code: "log"})
             console.warn(e)
         })
         .on("searchNoResult", message => message.channel.send("404 video not found"))
+        .on("noRelated", queue => queue.textChannel.send("삐빅.. 추천 영상을 찾을 수 없습니다.."))
         .on("finish", queue => {
             const embed = new MessageEmbed()
                 .setTitle("노래가 끝났어요!")
                 .setColor("cbd0ed")
-                .setDescription(`더이상 듣기를 원치 않는다면 \`${config.prefix}나가\` 명령어를 입력해주세요.`)
-            queue.textChannel.send(embed)
+                .setDescription(`더이상 듣기를 원치 않는다면 \`${config.prefix}나가\` 명령어를 입력해 주세요.`)
+            queue.textChannel.send({ embeds: [embed]})
+        })
+        .on("disconnect", queue => {
+            const embed = new MessageEmbed()
+                .setTitle("보이스채널에서 끊겼어요!")
+                .setColor("cbd0ed")
+                .setDescription(`\`${config.prefix}재생\` 명령어로 다시 재생해 주세요.`)
+            queue.textChannel.send({ embeds: [embed]})
         })
 }

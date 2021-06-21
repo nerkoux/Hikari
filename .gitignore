@@ -6,3 +6,6 @@ pnpm-lock.yaml
 *.log
 
 config.json
+
+# commands test
+commands/utils/notice.js
