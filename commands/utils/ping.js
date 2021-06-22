@@ -9,6 +9,6 @@ module.exports = {
             .setTitle("Hikari :heart:")
             .setColor("cbd0ed")
             .setDescription(`웹소켓 핑: **\`${client.ws.ping}\`** ms`)
-        message.reply(nostring)
+        message.reply({embeds: [nostring]})
     }
 }
