@@ -14,7 +14,8 @@ module.exports = (client) => {
         plugins: [
             new SpotifyPlugin(),
             new SoundCloudPlugin()
-        ]
+        ],
+        ytdlOptions: { highWaterMark: 1<<25 }
     })
 
     const status = (queue) => `음량: \`${queue.volume}%\` | 필터: \`${queue.filter || "꺼짐"}\` | 반복: \`${queue.repeatMode ? queue.repeatMode === 2 ? "전체 반복" : "한 곡만" : "꺼짐"}\` | 자동재생: \`${queue.autoplay ? "켜짐" : "꺼짐"}\``
