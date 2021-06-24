@@ -6,6 +6,7 @@ module.exports = {
     description: "노래를 틀어줍니다",
     cooldown: "5",
     run: async (client, message, args, config) => {
+        if (!message.member.voice.channel) return message.reply("보이스채널에 먼저 들어가셔야 해요.")
         if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) return message.reply("저런, 저랑 같은 보이스채널에 계셔야 해요.")
         const nostring = new MessageEmbed()
             .setTitle("Hikari :heart:")
