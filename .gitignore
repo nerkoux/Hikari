@@ -1,6 +1,5 @@
 node_modules
 package_lock.json
-pnpm-lock.yaml
 .npm
 
 *.log
