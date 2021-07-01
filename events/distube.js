@@ -23,6 +23,7 @@ module.exports = (client) => {
     client.distube
         .on("initQueue", queue => {
             queue.autoplay = false
+            queue.voice.setSelfDeaf(true)
         })
         .on("playSong", (queue, song) => {
             queue.textChannel.stopTyping(true)
@@ -36,7 +37,7 @@ module.exports = (client) => {
             if (!song.thumbnail === null) {
                 embed.setThumbnail(`${song.thumbnail}`)
             }
-            queue.textChannel.send({ embeds: [embed]})
+            queue.textChannel.send({ embeds: [embed] })
 
             if (queue.voiceChannel.type === "stage" && queue.voiceChannel.manageable) {
                 queue.clientMember.voice.setSuppressed(false)
@@ -48,7 +49,7 @@ module.exports = (client) => {
                     .setDescription("저에게 스테이지 관리 권한을 부여해 주시거나 발언권 요청을 받아주세요.")
                     .setImage("https://nyan.shx.gg/a0QDsc.gif")
                     .setTimestamp()
-                queue.textChannel.send({ embeds: [embed]})
+                queue.textChannel.send({ embeds: [embed] })
                 queue.clientMember.voice.setRequestToSpeak(true)
             }
         })
@@ -74,7 +75,7 @@ module.exports = (client) => {
                 .addField("노래", `${playlist.songs.length}개의 노래를 넣었어요.`)
                 .addField("상태", `${status(queue)}`)
                 .setTimestamp()
-            queue.textChannel.send({ embeds: [embed]})
+            queue.textChannel.send({ embeds: [embed] })
         })
         .on("searchResult", (message, result) => {
             let i = 0
@@ -101,13 +102,13 @@ module.exports = (client) => {
                 .setTitle("노래가 끝났어요!")
                 .setColor("cbd0ed")
                 .setDescription(`더이상 듣기를 원치 않는다면 \`${config.prefix}나가\` 명령어를 입력해 주세요.`)
-            queue.textChannel.send({ embeds: [embed]})
+            queue.textChannel.send({ embeds: [embed] })
         })
         .on("disconnect", queue => {
             const embed = new MessageEmbed()
                 .setTitle("보이스채널에서 끊겼어요!")
                 .setColor("cbd0ed")
                 .setDescription(`\`${config.prefix}재생\` 명령어로 다시 재생해 주세요.`)
-            queue.textChannel.send({ embeds: [embed]})
+            queue.textChannel.send({ embeds: [embed] })
         })
 }
