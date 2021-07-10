@@ -34,7 +34,7 @@ module.exports = (client) => {
                 .addField("신청자", `${song.user}`)
                 .addField("상태", `${status(queue)}`)
                 .setTimestamp()
-            if (!song.thumbnail === null) {
+            if (song.thumbnail) {
                 embed.setThumbnail(`${song.thumbnail}`)
             }
             queue.textChannel.send({ embeds: [embed] })
@@ -61,10 +61,10 @@ module.exports = (client) => {
                 .addField("노래", `[\`${Util.escapeMarkdown(song.name)}\` - \`${song.formattedDuration}\`](${song.url})`)
                 .addField("신청자", `${song.user}`, true)
                 .setTimestamp()
-            if (!song.thumbnail === null) {
+            if (song.thumbnail) {
                 embed.setThumbnail(`${song.thumbnail}`)
             }
-            queue.textChannel.send(embed)
+            queue.textChannel.send({ embeds: [embed] })
         })
         .on("addList", (queue, playlist) => {
             queue.textChannel.stopTyping(true)
