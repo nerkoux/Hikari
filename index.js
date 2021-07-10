@@ -1,7 +1,7 @@
 const Discord = require("discord.js")
 const client = new Discord.Client({
     disableEveryone: true,
-    intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_VOICE_STATES", "GUILD_MESSAGE_REACTIONS", "GUILD_MESSAGE_TYPING"],
+    intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_VOICE_STATES", "GUILD_MESSAGE_TYPING"],
     cacheEmojis: true
 })
 const fs = require("fs")
