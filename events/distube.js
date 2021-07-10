@@ -1,4 +1,4 @@
-const { Util, MessageEmbed } = require("discord.js")
+const { Formatters, Util, MessageEmbed } = require("discord.js")
 const DisTube = require("distube").default
 const SpotifyPlugin = require("@distube/spotify")
 const SoundCloudPlugin = require("@distube/soundcloud")
@@ -83,16 +83,16 @@ module.exports = (client) => {
             +   "알맞는 숫자를 입력해 주세요!")
             const resultname = result.map(song => `${++i}. ${song.name} - ${song.formattedDuration}`)
                 .slice(0, 1990).join("\n")
-            message.channel.send(`\n\n${resultname}`, {code: "markdown"})
+            message.channel.send(`\n\n${Formatters.codeBlock("md", resultname)}`)
         })
-        .on("searchCancel", message => {
+        .on("searchInvalidAnswer", message => {
             message.channel.stopTyping(true)
             message.channel.send("취소됐어요! :pensive:")
         })
         .on("error", (channel, e) => {
             channel.stopTyping(true)
             channel.send("에러가 발생 하였습니다!\n")
-            channel.send(`${e}`, {code: "log"})
+            channel.send(Formatters.codeBlock("js", e))
             console.warn(e)
         })
         .on("searchNoResult", message => message.channel.send("404 video not found"))
