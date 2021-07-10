@@ -31,11 +31,11 @@ module.exports = (client, DokdoHandler) => {
         }, 10000)
     })
 
-    // Debug | client.on("debug", (e) => logger.log(e))
+    // client.on("debug", (e) => console.log(e))
     client.on("warn", (info) => console.warn(info))
     client.on("error", (error) => console.error(error))
 
-    client.on("message", async message => {
+    client.on("messageCreate", async message => {
         if (!message.guild || message.author.bot || message.channel.type === "dm") return
         const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/gu, "\\$&")
         const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex(config.prefix)})\\s*`, "u")
