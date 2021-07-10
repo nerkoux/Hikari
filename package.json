@@ -16,20 +16,17 @@
   },
   "dependencies": {
     "@discordjs/opus": "^0.5.3",
-    "@discordjs/voice": "^0.5.1",
+    "@discordjs/voice": "^0.5.3",
     "@distube/soundcloud": "^0.1.3",
     "@distube/spotify": "github:KeepSOBP/spotify",
     "discord.js": "github:discordjs/discord.js",
-    "distube": "^3.0.0-alpha.7",
-    "dokdo": "github:keepsobp/dokdo#main",
+    "distube": "^3.0.0-alpha.14",
+    "dokdo": "github:mome0320/dokdo#support-djs-v13",
     "koreanbots": "^2.0.12",
     "libsodium-wrappers": "^0.7.9",
     "ytdl-core": "^4.8.3"
   },
   "devDependencies": {
-    "eslint": "^7.29.0"
-  },
-  "resolutions": {
-    "distube": "^3.0.0-alpha.6"
+    "eslint": "^7.30.0"
   }
 }
