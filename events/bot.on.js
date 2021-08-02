@@ -1,6 +1,7 @@
 const Discord = require("discord.js")
 const fs = require("fs")
 const config = require("../config.json")
+const buttonHandler = require("../utils/buttonHandler.js")
 
 module.exports = (client, DokdoHandler) => {
 
@@ -61,7 +62,7 @@ module.exports = (client, DokdoHandler) => {
 
             const now = Date.now()
             const timestamps = client.cooldowns.get(command.name)
-            const cooldownAmount = (command.cooldown || 1) * 1000
+            const cooldownAmount = (command.cooldown || 3) * 1000 // set or 3 seconds (default)
 
             if (timestamps.has(message.author.id)) {
                 const expirationTime = timestamps.get(message.author.id) + cooldownAmount
@@ -84,7 +85,8 @@ module.exports = (client, DokdoHandler) => {
                 message.reply(`에러가 발생했습니다.\n${error}`).catch(console.error)
             }
         })
-
+        .on("interactionCreate", async interaction => {
+            buttonHandler(client, interaction)
+        })
     client.login(config.token)
-
 }
