@@ -26,7 +26,6 @@ module.exports = (client) => {
             queue.voice.setSelfDeaf(true)
         })
         .on("playSong", (queue, song) => {
-            queue.textChannel.stopTyping(true)
             const embed = new MessageEmbed()
                 .setTitle(":white_check_mark: 재생중")
                 .setColor("cbd0ed")
@@ -54,7 +53,6 @@ module.exports = (client) => {
             }
         })
         .on("addSong", (queue, song) => {
-            queue.textChannel.stopTyping(true)
             const embed = new MessageEmbed()
                 .setTitle(":white_check_mark: 추가 완료")
                 .setColor("cbd0ed")
@@ -67,7 +65,6 @@ module.exports = (client) => {
             queue.textChannel.send({ embeds: [embed] })
         })
         .on("addList", (queue, playlist) => {
-            queue.textChannel.stopTyping(true)
             const embed = new MessageEmbed()
                 .setTitle(":white_check_mark: 추가 완료")
                 .setColor("cbd0ed")
@@ -86,11 +83,9 @@ module.exports = (client) => {
             message.channel.send(`\n\n${Formatters.codeBlock("md", resultname)}`)
         })
         .on("searchInvalidAnswer", message => {
-            message.channel.stopTyping(true)
             message.channel.send("취소됐어요! :pensive:")
         })
         .on("error", (channel, e) => {
-            channel.stopTyping(true)
             channel.send("에러가 발생 하였습니다!\n")
             channel.send(Formatters.codeBlock("js", e))
             console.warn(e)
