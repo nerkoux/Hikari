@@ -8,7 +8,8 @@ RUN apt-get update && \
 	apt-get install -y \
 	ffmpeg \
 	python3 \
-	build-essential
+	build-essential && \
+	apt-get purge -y --auto-remove
 
 # setup workdir
 RUN mkdir -p /app
