@@ -1,7 +1,7 @@
 const { Formatters, Util, MessageEmbed } = require("discord.js")
-const DisTube = require("distube").default
-const SpotifyPlugin = require("@distube/spotify")
-const SoundCloudPlugin = require("@distube/soundcloud")
+const { DisTube } = require("distube")
+const { SpotifyPlugin } = require("@distube/spotify")
+const { SoundCloudPlugin } = require("@distube/soundcloud")
 const config = require("../config.json")
 
 module.exports = (client) => {
