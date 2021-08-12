@@ -19,5 +19,8 @@ ADD . /app
 # install dependencies
 RUN pnpm install
 
+# set SHELL env for dokdo
+ENV SHELL="/bin/bash"
+
 ENTRYPOINT [ "pnpm", "start" ]
 
