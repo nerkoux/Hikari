@@ -5,13 +5,13 @@ const client = new Discord.Client({
 })
 const fs = require("fs")
 const Dokdo = require("dokdo")
-const config = require("./config.json")
 
+client.config = require("./config.json")
 client.commands = new Discord.Collection()
 client.aliases = new Discord.Collection()
 client.categories = fs.readdirSync("./commands/")
 client.cooldowns = new Discord.Collection()
-const DokdoHandler = new Dokdo(client, { aliases: ["eval", "dok"], prefix: config.prefix })
+const DokdoHandler = new Dokdo(client, { aliases: ["eval", "dok"], prefix: client.config.prefix })
 
 const eventFiles = fs.readdirSync("./events").filter(file => file.endsWith(".js"))
 for (const file of eventFiles) {

@@ -1,16 +1,14 @@
 const { Formatters, Util, MessageEmbed } = require("discord.js")
 const { DisTube } = require("distube")
-const { SpotifyPlugin } = require("@distube/spotify")
 const { SoundCloudPlugin } = require("@distube/soundcloud")
-const config = require("../config.json")
+const { SpotifyPlugin } = require("@distube/spotify")
 
 module.exports = (client) => {
     client.distube = new DisTube(client, {
         emitNewSongOnly: true,
         searchSongs: 10,
         leaveOnEmpty: true,
-        customFilters: config.filters,
-        YoutubeCookie: config.ytcookie,
+        customFilters: client.config.filters,
         plugins: [
             new SpotifyPlugin(),
             new SoundCloudPlugin()
@@ -82,28 +80,31 @@ module.exports = (client) => {
                 .slice(0, 1990).join("\n")
             message.channel.send(`\n\n${Formatters.codeBlock("md", resultname)}`)
         })
-        .on("searchInvalidAnswer", message => {
-            message.channel.send("취소됐어요! :pensive:")
-        })
-        .on("error", (channel, e) => {
-            channel.send("에러가 발생 하였습니다!\n")
-            channel.send(Formatters.codeBlock("js", e))
-            console.warn(e)
-        })
+        .on("searchCancel", message => message.channel.send("취소됐어요! :pensive:"))
+        .on("searchInvalidAnswer", message => message.channel.send("취소됐어요! :pensive:"))
         .on("searchNoResult", message => message.channel.send("404 video not found"))
+        .on("searchDone", () => {})
         .on("noRelated", queue => queue.textChannel.send("삐빅.. 추천 영상을 찾을 수 없습니다.."))
         .on("finish", queue => {
             const embed = new MessageEmbed()
                 .setTitle("노래가 끝났어요!")
                 .setColor("cbd0ed")
-                .setDescription(`더이상 듣기를 원치 않는다면 \`${config.prefix}나가\` 명령어를 입력해 주세요.`)
+                .setDescription(`더이상 듣기를 원치 않는다면 \`${client.config.prefix}나가\` 명령어를 입력해 주세요.`)
             queue.textChannel.send({ embeds: [embed] })
         })
         .on("disconnect", queue => {
-            const embed = new MessageEmbed()
-                .setTitle("보이스채널에서 끊겼어요!")
-                .setColor("cbd0ed")
-                .setDescription(`\`${config.prefix}재생\` 명령어로 다시 재생해 주세요.`)
-            queue.textChannel.send({ embeds: [embed] })
+            if (queue.songs) {
+                const embed = new MessageEmbed()
+                    .setTitle("보이스채널에서 끊겼어요!")
+                    .setColor("cbd0ed")
+                    .setDescription(`\`${client.config.prefix}재생\` 명령어로 다시 재생해 주세요.`)
+                queue.stop()
+                return queue.textChannel.send({ embeds: [embed] })
+            }
+        })
+        .on("error", (channel, e) => {
+            channel.send("에러가 발생 하였습니다!\n")
+            channel.send(Formatters.codeBlock("js", e))
+            console.warn(e)
         })
 }
