@@ -67,6 +67,6 @@ module.exports = {
             } catch (e) {
                 return clearInterval(this.interval)
             }
-        }, 1500)
+        }, 5000)
     }
 }
