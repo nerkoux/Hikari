@@ -11,7 +11,12 @@ module.exports = (client) => {
         customFilters: client.config.filters,
         plugins: [
             new SpotifyPlugin(),
-            new SoundCloudPlugin()
+            new SoundCloudPlugin({
+                api: {
+                    clientId: client.config.spotify.clientID,
+                    clientSecret: client.config.spotify.clientSecret,
+                }
+            })
         ],
         ytdlOptions: { highWaterMark: 1<<25 }
     })

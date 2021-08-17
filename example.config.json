@@ -3,6 +3,10 @@
     "kbtoken": "",
     "ytcookie": "",
     "prefix": "",
+    "spotify": {
+        "clientID": "",
+        "clientSecret": ""
+    },
     "filters": {
         "clear": "dynaudnorm=f=200",
         "bassboost": "bass=g=20,dynaudnorm=f=200",
