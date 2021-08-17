@@ -18,20 +18,22 @@
   "dependencies": {
     "@discordjs/opus": "^0.5.3",
     "@discordjs/voice": "^0.6.0",
-    "@distube/soundcloud": "^0.2.0",
-    "@distube/spotify": "^0.6.0",
+    "@distube/soundcloud": "^0.2.2",
+    "@distube/spotify": "^0.6.2",
     "discord.js": "latest",
     "distube": "beta",
     "dokdo": "github:mome0320/dokdo#support-djs-v13",
     "koreanbots": "^2.0.12",
     "libsodium-wrappers": "^0.7.9",
+    "pretty-ms": "^7.0.1",
+    "string-progressbar": "^1.0.4",
     "ytdl-core": "^4.9.1"
   },
   "devDependencies": {
     "eslint": "^7.32.0"
   },
   "resolutions": {
-    "distube": "beta",
-    "discord.js": "latest"
+    "discord.js": "latest",
+    "distube": "beta"
   }
 }

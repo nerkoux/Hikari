@@ -1,10 +1,8 @@
 const Discord = require("discord.js")
 const fs = require("fs")
-const config = require("../config.json")
-const buttonHandler = require("../utils/buttonHandler.js")
+const buttonHandler = require("../utils/buttons")
 
 module.exports = (client, DokdoHandler) => {
-
     fs.readdirSync("./commands/").forEach((dir) => {
         const commands = fs.readdirSync(`./commands/${dir}/`).filter((file) => file.endsWith(".js"))
         if (commands.length <= 0) return console.log("명령어를 찾을 수 없어요!")
@@ -24,13 +22,13 @@ module.exports = (client, DokdoHandler) => {
             setInterval(() => {
                 const server = client.guilds.cache.size
                 const cstatuslist = [
-                    `${config.prefix}도움`,
-                    `${config.prefix}초대`,
+                    `${client.config.prefix}도움`,
+                    `${client.config.prefix}초대`,
                     `${server} 서버`
                 ]
                 const index = Math.floor(Math.random() * cstatuslist.length)
                 client.user.setActivity(cstatuslist[index] + " | 보이스채널", { type: "COMPETING" })
-            }, 10000)
+            }, 8000)
         })
 
     //  .on("debug", (info) => console.log(info))
@@ -40,7 +38,7 @@ module.exports = (client, DokdoHandler) => {
         .on("messageCreate", async message => {
             if (!message.guild || message.author.bot || message.channel.type === "dm") return
             const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/gu, "\\$&")
-            const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex(config.prefix)})\\s*`, "u")
+            const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex(client.config.prefix)})\\s*`, "u")
             if (!prefixRegex.test(message.content)) return
 
             const [, matchedPrefix] = message.content.match(prefixRegex)
@@ -79,14 +77,18 @@ module.exports = (client, DokdoHandler) => {
             setTimeout(() => timestamps.delete(message.author.id), cooldownAmount)
 
             try {
-                command.run(client, message, args, config)
+                return command.run(client, message, args)
             } catch (error) {
                 console.error(error)
                 message.reply(`에러가 발생했습니다.\n${error}`).catch(console.error)
             }
         })
         .on("interactionCreate", async interaction => {
-            buttonHandler(client, interaction)
+            const { message, customId } = interaction
+            if (!interaction.isButton() || customId.includes("dokdo$")) return
+            const buttonCommand = buttonHandler[customId]
+            const queue = client.distube.getQueue(message)
+            return buttonCommand.run(client, interaction, message, queue)
         })
-    client.login(config.token)
+    client.login(client.config.token)
 }
