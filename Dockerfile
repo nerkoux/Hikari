@@ -9,7 +9,11 @@ RUN apt-get update && \
 	git \
 	ffmpeg \
 	python3 \
-	build-essential && \
+	build-essential \
+        autoconf \
+        automake \
+        g++ \
+        libtool && \
 	apt-get purge -y --auto-remove
 
 # setup workdir
