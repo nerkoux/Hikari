@@ -3,7 +3,7 @@
   <a href="https://github.com/KeepSOBP/Hikari/actions/workflows/lint.yml" target="_blank">
     <img alt="lint checks" src="https://github.com/KeepSOBP/Hikari/actions/workflows/lint.yml/badge.svg" />
   </a>
-  <a href="https://dsc.gg/nyan" target="_blank">
+  <a href="https://discord.deta.dev" target="_blank">
     <img alt="Discord" src="https://img.shields.io/discord/661525235207634994.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2" />
   </a>
   <img alt="Version" src="https://img.shields.io/badge/version-3.0.0-blue.svg?cacheSeconds=2592000" />
