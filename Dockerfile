@@ -30,4 +30,7 @@ RUN pnpm rm libsodium-wrappers && pnpm install sodium
 # set SHELL env for dokdo
 ENV SHELL="/bin/bash"
 
+# set python aliases for distube(youtube-dl)
+RUN ln -s /usr/bin/python3 /usr/bin/python
+
 ENTRYPOINT [ "pnpm", "start" ]
