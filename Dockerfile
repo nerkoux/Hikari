@@ -21,10 +21,8 @@ RUN mkdir -p /app
 WORKDIR /app
 ADD . /app
 
-# install dependencies
-RUN pnpm install
-
 # install sodium instead of libsodium-wrappers
+# also install dependencies too
 RUN pnpm rm libsodium-wrappers && pnpm install sodium
 
 # set SHELL env for dokdo

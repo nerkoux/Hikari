@@ -22,7 +22,7 @@
     "@distube/spotify": "^0.6.3",
     "discord.js": "latest",
     "distube": "beta",
-    "dokdo": "github:mome0320/dokdo#support-djs-v13",
+    "dokdo": "^0.5.0",
     "koreanbots": "^2.0.12",
     "libsodium-wrappers": "^0.7.9",
     "pretty-ms": "^7.0.1",
